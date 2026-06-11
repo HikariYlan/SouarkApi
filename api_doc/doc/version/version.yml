@@ -1,0 +1,17 @@
+get:
+  tags:
+    - version
+  description: API version
+  responses:
+    200:
+      description: Returns the API version
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              version:
+                type: string
+          example:
+            version: 0.0.0
+

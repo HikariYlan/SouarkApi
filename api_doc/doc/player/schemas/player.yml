@@ -1,0 +1,17 @@
+Player:
+  type: object
+  properties:
+    _id:
+      type: string
+    firstName:
+      type: string
+    lastName:
+      type: string
+    division:
+      type: string
+
+PlayerNotFound:
+  type: object
+  properties:
+    error:
+      type: string

@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info:
+  title: Souark API
+  description: .
+  version: 0.0.1
+
+servers:
+  - url: http://localhost:7777
+    description: Development server
+
+tags:
+  - name: version
+    description: API version
+  - name: player
+    description: Player collection
+
+paths:
+  /api/version:
+    $ref: "./version/version.yml"
+  /api/player:
+    $ref: "./player/player.yml"
+  /api/player/{id}:
+    $ref: "./player/playerId.yml"

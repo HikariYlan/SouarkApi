@@ -1,0 +1,47 @@
+get:
+  tags:
+    - player
+  description: Returns all players from the collection
+  responses:
+    200:
+      description: Players from the collection
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/playerList.yml#/List"
+post:
+  tags:
+    - player
+  description: Insert a new player into the collection
+  requestBody:
+    description: The player to insert
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName:
+              type: string
+            division:
+              type: string
+  responses:
+    201:
+      description: The newly added player
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/player.yml#/Player"
+    400:
+      description: Invalid data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+          example:
+            error: Invalid data

@@ -1,0 +1,47 @@
+get:
+  tags:
+    - player
+  description: Returns one player from the collection
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  responses:
+    200:
+      description: The player from the collection
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/player.yml#/Player"
+    404:
+      description: No player found
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/player.yml#/PlayerNotFound"
+          example:
+            error: Data not found
+delete:
+  tags:
+    - player
+  description: Delete a player from the collection
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  responses:
+    204:
+      description: The player has been deleted
+    404:
+      description: No player found
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/player.yml#/PlayerNotFound"
+          example:
+            error: Data not found
+  
