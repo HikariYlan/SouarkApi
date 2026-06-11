@@ -3,12 +3,30 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"souark/api/player"
+	"souark/api/services/send"
+
+	"github.com/joho/godotenv"
 )
+
+func apiVersion(res http.ResponseWriter, _ *http.Request) {
+	err := godotenv.Load()
+	if err != nil {
+		panic("No environment file found")
+	}
+
+	version := os.Getenv("API_VERSION")
+
+	send.Json(version, res, http.StatusOK)
+}
 
 func main() {
 	// Router creation
 	router := http.NewServeMux()
+
+	// API version
+	router.HandleFunc("/api/version", apiVersion)
 
 	// Player router
 	router.Handle("/api/player/", http.StripPrefix("/api/player", player.Router()))
