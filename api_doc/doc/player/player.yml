@@ -27,6 +27,10 @@ post:
               type: string
             division:
               type: string
+        example:
+          firstName: John
+          lastName: Doe
+          division: beginnerOne
   responses:
     201:
       description: The newly added player
