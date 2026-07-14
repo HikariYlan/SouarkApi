@@ -1,7 +1,6 @@
 package base
 
 import (
-	"encoding/json"
 	"net/http"
 	"souark/api/services/send"
 
@@ -10,9 +9,12 @@ import (
 
 type CreateFilterFunction func(*http.Request) bson.D
 
+type ValidateDataFunction[Entity any] func(*http.Request) (bool, Entity)
+
 type Controller[Entity any] struct {
 	Repository   Repository[Entity]
 	CreateFilter CreateFilterFunction
+	ValidateData ValidateDataFunction[Entity]
 }
 
 func (controller Controller[Entity]) NewRouter() *http.ServeMux {
@@ -42,10 +44,9 @@ func (controller Controller[Entity]) ReadAll(res http.ResponseWriter, req *http.
 
 func (controller Controller[Entity]) Create(res http.ResponseWriter, req *http.Request) {
 
-	decoder := json.NewDecoder(req.Body)
+	validation, document := controller.ValidateData(req)
 
-	var document Entity
-	if err := decoder.Decode(&document); err != nil {
+	if validation == false {
 		send.Json(map[string]string{"error": "Invalid data"}, res, http.StatusBadRequest)
 		return
 	}

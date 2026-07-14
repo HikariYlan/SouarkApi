@@ -1,8 +1,10 @@
 package player
 
 import (
+	"encoding/json"
 	"net/http"
 	"souark/api/base"
+	"souark/api/player/enum"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
@@ -32,7 +34,24 @@ func createFilter(req *http.Request) bson.D {
 	return bson.D{firstNameFilter, lastNameFilter, divisionFilter}
 }
 
+func ValidateData(req *http.Request) (bool, Player) {
+	decoder := json.NewDecoder(req.Body)
+
+	var document Player
+
+	if err := decoder.Decode(&document); err != nil {
+		return false, document
+	}
+
+	if _, err := enum.ParseDivision(document.Division); err != nil {
+		return false, document
+	}
+
+	return true, document
+}
+
 var controller = base.Controller[Player]{
 	Repository:   Repository(),
 	CreateFilter: createFilter,
+	ValidateData: ValidateData,
 }
