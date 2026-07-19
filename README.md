@@ -4,7 +4,7 @@
 ---
 
 # What is *Souark*?
-*Souark* is a fictional sport that I invented for the book I'm writing myself.
+*Souark* is a fictional sport that I invented for the book I'm writing.
 It's a mix between boxing, handball and football (soccer).
 
 # How to play a game of *Souark*
