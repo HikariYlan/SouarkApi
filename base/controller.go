@@ -2,6 +2,7 @@ package base
 
 import (
 	"net/http"
+	"slices"
 	"souark/api/services/send"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -11,19 +12,30 @@ type CreateFilterFunction func(*http.Request) bson.D
 
 type ValidateDataFunction[Entity any] func(*http.Request) (bool, Entity)
 
+type Routes[Entity any] []string
+
 type Controller[Entity any] struct {
 	Repository   Repository[Entity]
 	CreateFilter CreateFilterFunction
 	ValidateData ValidateDataFunction[Entity]
+	Routes       Routes[Entity]
 }
 
 func (controller Controller[Entity]) NewRouter() *http.ServeMux {
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /", controller.ReadAll)
-	router.HandleFunc("POST /", controller.Create)
-	router.HandleFunc("GET /{id}", controller.Read)
-	router.HandleFunc("DELETE /{id}", controller.Delete)
+	if slices.Contains(controller.Routes, "get") {
+		router.HandleFunc("GET /", controller.ReadAll)
+	}
+	if slices.Contains(controller.Routes, "post") {
+		router.HandleFunc("POST /", controller.Create)
+	}
+	if slices.Contains(controller.Routes, "getId") {
+		router.HandleFunc("GET /{id}", controller.Read)
+	}
+	if slices.Contains(controller.Routes, "delete") {
+		router.HandleFunc("DELETE /{id}", controller.Delete)
+	}
 
 	return router
 }
