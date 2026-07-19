@@ -12,40 +12,40 @@ import (
 )
 
 const (
-	// DivisionBeginnerOne is a Division of type BeginnerOne.
-	DivisionBeginnerOne Division = iota
-	// DivisionBeginnerTwo is a Division of type BeginnerTwo.
-	DivisionBeginnerTwo
-	// DivisionBeginnerThree is a Division of type BeginnerThree.
-	DivisionBeginnerThree
-	// DivisionAdvancedOne is a Division of type AdvancedOne.
-	DivisionAdvancedOne
-	// DivisionAdvancedTwo is a Division of type AdvancedTwo.
-	DivisionAdvancedTwo
-	// DivisionAdvancedThree is a Division of type AdvancedThree.
-	DivisionAdvancedThree
-	// DivisionProfessionalOne is a Division of type ProfessionalOne.
-	DivisionProfessionalOne
-	// DivisionProfessionalTwo is a Division of type ProfessionalTwo.
-	DivisionProfessionalTwo
-	// DivisionProfessionalThree is a Division of type ProfessionalThree.
-	DivisionProfessionalThree
+	// DivisionTalc is a Division of type Talc.
+	DivisionTalc Division = iota
+	// DivisionHalite is a Division of type Halite.
+	DivisionHalite
+	// DivisionFluorite is a Division of type Fluorite.
+	DivisionFluorite
+	// DivisionQuartz is a Division of type Quartz.
+	DivisionQuartz
+	// DivisionPyrite is a Division of type Pyrite.
+	DivisionPyrite
+	// DivisionGarnet is a Division of type Garnet.
+	DivisionGarnet
+	// DivisionCorundum is a Division of type Corundum.
+	DivisionCorundum
+	// DivisionDiamond is a Division of type Diamond.
+	DivisionDiamond
+	// DivisionBismuth is a Division of type Bismuth.
+	DivisionBismuth
 )
 
 var ErrInvalidDivision = errors.New("not a valid Division")
 
-const _DivisionName = "beginnerOnebeginnerTwobeginnerThreeadvancedOneadvancedTwoadvancedThreeprofessionalOneprofessionalTwoprofessionalThree"
+const _DivisionName = "talchalitefluoritequartzpyritegarnetcorundumdiamondbismuth"
 
 var _DivisionMap = map[Division]string{
-	DivisionBeginnerOne:       _DivisionName[0:11],
-	DivisionBeginnerTwo:       _DivisionName[11:22],
-	DivisionBeginnerThree:     _DivisionName[22:35],
-	DivisionAdvancedOne:       _DivisionName[35:46],
-	DivisionAdvancedTwo:       _DivisionName[46:57],
-	DivisionAdvancedThree:     _DivisionName[57:70],
-	DivisionProfessionalOne:   _DivisionName[70:85],
-	DivisionProfessionalTwo:   _DivisionName[85:100],
-	DivisionProfessionalThree: _DivisionName[100:117],
+	DivisionTalc:     _DivisionName[0:4],
+	DivisionHalite:   _DivisionName[4:10],
+	DivisionFluorite: _DivisionName[10:18],
+	DivisionQuartz:   _DivisionName[18:24],
+	DivisionPyrite:   _DivisionName[24:30],
+	DivisionGarnet:   _DivisionName[30:36],
+	DivisionCorundum: _DivisionName[36:44],
+	DivisionDiamond:  _DivisionName[44:51],
+	DivisionBismuth:  _DivisionName[51:58],
 }
 
 // String implements the Stringer interface.
@@ -64,15 +64,15 @@ func (x Division) IsValid() bool {
 }
 
 var _DivisionValue = map[string]Division{
-	_DivisionName[0:11]:    DivisionBeginnerOne,
-	_DivisionName[11:22]:   DivisionBeginnerTwo,
-	_DivisionName[22:35]:   DivisionBeginnerThree,
-	_DivisionName[35:46]:   DivisionAdvancedOne,
-	_DivisionName[46:57]:   DivisionAdvancedTwo,
-	_DivisionName[57:70]:   DivisionAdvancedThree,
-	_DivisionName[70:85]:   DivisionProfessionalOne,
-	_DivisionName[85:100]:  DivisionProfessionalTwo,
-	_DivisionName[100:117]: DivisionProfessionalThree,
+	_DivisionName[0:4]:   DivisionTalc,
+	_DivisionName[4:10]:  DivisionHalite,
+	_DivisionName[10:18]: DivisionFluorite,
+	_DivisionName[18:24]: DivisionQuartz,
+	_DivisionName[24:30]: DivisionPyrite,
+	_DivisionName[30:36]: DivisionGarnet,
+	_DivisionName[36:44]: DivisionCorundum,
+	_DivisionName[44:51]: DivisionDiamond,
+	_DivisionName[51:58]: DivisionBismuth,
 }
 
 // ParseDivision attempts to convert a string to a Division.

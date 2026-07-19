@@ -1,6 +1,6 @@
 package enum
 
-// ENUM(beginnerOne, beginnerTwo, beginnerThree, advancedOne, advancedTwo, advancedThree, professionalOne, professionalTwo, professionalThree)
+// ENUM(talc, halite, fluorite, quartz, pyrite, garnet, corundum, diamond, bismuth)
 type Division int
 
 //go tool go-enum -f division_model.go
