@@ -1,0 +1,47 @@
+get:
+  tags:
+    - game
+  description: Returns one game from the collection
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  responses:
+    200:
+      description: The game from the collection
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/game.yml#/Game"
+    404:
+      description: No team found
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/game.yml#/GameNotFound"
+          example:
+            error: Data not found
+delete:
+  tags:
+    - game
+  description: Delete a game from the collection
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  responses:
+    204:
+      description: The game has been deleted
+    404:
+      description: No game found
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/game.yml#/GameNotFound"
+          example:
+            error: Data not found
+  

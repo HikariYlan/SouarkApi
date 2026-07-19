@@ -1,0 +1,11 @@
+get:
+  tags:
+    - game
+  description: Returns all games from the collection
+  responses:
+    200:
+      description: Games from the collection
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/gameList.yml#/List"

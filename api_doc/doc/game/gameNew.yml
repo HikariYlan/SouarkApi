@@ -1,0 +1,44 @@
+post:
+  tags:
+    - game
+  description: Insert a new game into the collection
+  requestBody:
+    description: The game to insert
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./schemas/game.yml#/NewGame"
+        example:
+          championship: talcCup
+          teams:
+            team1: string
+            team2: string
+          state:
+            currentSet: 0
+            scores:
+              - sets: 0
+                points: 0
+                fouls: 0
+              - sets: 0
+                points: 0
+                fouls: 0
+            winner: -1
+  responses:
+    201:
+      description: The newly added game
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/game.yml#/Game"
+    400:
+      description: Invalid data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+          example:
+            error: Invalid data

@@ -1,0 +1,52 @@
+Game:
+  type: object
+  properties:
+    _id:
+      type: string
+    championship:
+      type: string
+    teams:
+      type: object
+      properties:
+        team1:
+          type: object
+        team2:
+          type: object
+    state:
+      type: object
+      properties:
+        currentSet:
+          type: int
+        scores:
+          type: array
+        winner:
+          type: int
+
+
+NewGame:
+  type: object
+  properties:
+    championship:
+      type: string
+    teams:
+      type: object
+      properties:
+        team1:
+          type: string
+        team2:
+          type: string
+    state:
+      type: object
+      properties:
+        currentSet:
+          type: int
+        scores:
+          type: array
+        winner:
+          type: int
+
+GameNotFound:
+  type: object
+  properties:
+    error:
+      type: string
