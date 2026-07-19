@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Souark API
   description: .
-  version: 0.0.1
+  version: 0.0.3
 
 servers:
   - url: http://localhost:7777
