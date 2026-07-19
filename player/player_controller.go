@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"net/http"
 	"souark/api/base"
-	"souark/api/player/enum"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
@@ -40,10 +39,6 @@ func ValidateData(req *http.Request) (bool, Player) {
 	var document Player
 
 	if err := decoder.Decode(&document); err != nil {
-		return false, document
-	}
-
-	if _, err := enum.ParseDivision(document.Division); err != nil {
 		return false, document
 	}
 

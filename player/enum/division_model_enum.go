@@ -6,6 +6,7 @@
 package enum
 
 import (
+	"database/sql/driver"
 	"errors"
 	"fmt"
 )
@@ -80,4 +81,101 @@ func ParseDivision(name string) (Division, error) {
 		return x, nil
 	}
 	return Division(0), fmt.Errorf("%s is %w", name, ErrInvalidDivision)
+}
+
+// MarshalText implements the text marshaller method.
+func (x Division) MarshalText() ([]byte, error) {
+	return []byte(x.String()), nil
+}
+
+// UnmarshalText implements the text unmarshaller method.
+func (x *Division) UnmarshalText(text []byte) error {
+	name := string(text)
+	tmp, err := ParseDivision(name)
+	if err != nil {
+		return err
+	}
+	*x = tmp
+	return nil
+}
+
+// AppendText appends the textual representation of itself to the end of b
+// (allocating a larger slice if necessary) and returns the updated slice.
+//
+// Implementations must not retain b, nor mutate any bytes within b[:len(b)].
+func (x *Division) AppendText(b []byte) ([]byte, error) {
+	return append(b, x.String()...), nil
+}
+
+var errDivisionNilPtr = errors.New("value pointer is nil") // one per type for package clashes
+
+// Scan implements the Scanner interface.
+func (x *Division) Scan(value interface{}) (err error) {
+	if value == nil {
+		*x = Division(0)
+		return
+	}
+
+	// A wider range of scannable types.
+	// driver.Value values at the top of the list for expediency
+	switch v := value.(type) {
+	case int64:
+		*x = Division(v)
+	case string:
+		*x, err = ParseDivision(v)
+	case []byte:
+		*x, err = ParseDivision(string(v))
+	case Division:
+		*x = v
+	case int:
+		*x = Division(v)
+	case *Division:
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x = *v
+	case uint:
+		*x = Division(v)
+	case uint64:
+		*x = Division(v)
+	case *int:
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x = Division(*v)
+	case *int64:
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x = Division(*v)
+	case float64: // json marshals everything as a float64 if it's a number
+		*x = Division(v)
+	case *float64: // json marshals everything as a float64 if it's a number
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x = Division(*v)
+	case *uint:
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x = Division(*v)
+	case *uint64:
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x = Division(*v)
+	case *string:
+		if v == nil {
+			return errDivisionNilPtr
+		}
+		*x, err = ParseDivision(*v)
+	}
+
+	return
+}
+
+// Value implements the driver Valuer interface.
+func (x Division) Value() (driver.Value, error) {
+	return x.String(), nil
 }
