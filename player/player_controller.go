@@ -54,4 +54,5 @@ var controller = base.Controller[Player]{
 	Repository:   Repository(),
 	CreateFilter: createFilter,
 	ValidateData: ValidateData,
+	Routes:       []string{"get", "post", "getId", "delete"},
 }
