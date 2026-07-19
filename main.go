@@ -6,6 +6,7 @@ import (
 	"os"
 	"souark/api/player"
 	"souark/api/services/send"
+	"souark/api/team"
 
 	"github.com/joho/godotenv"
 )
@@ -30,6 +31,9 @@ func main() {
 
 	// Player router
 	router.Handle("/api/player/", http.StripPrefix("/api/player", player.Router()))
+
+	// Team router
+	router.Handle("/api/team/", http.StripPrefix("/api/team", team.Router()))
 
 	// OpenAPI documentation
 	fs := http.FileServer(http.Dir("./api_doc"))
