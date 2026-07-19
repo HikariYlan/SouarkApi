@@ -1,0 +1,11 @@
+get:
+  tags:
+    - team
+  description: Returns all teams from the collection
+  responses:
+    200:
+      description: Teams from the collection
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/teamList.yml#/List"

@@ -1,0 +1,23 @@
+Team:
+  type: object
+  properties:
+    _id:
+      type: string
+    player1:
+      type: object
+    player2:
+      type: object
+
+NewTeam:
+  type: object
+  properties:
+    player1:
+      type: string
+    player2:
+      type: string
+
+TeamNotFound:
+  type: object
+  properties:
+    error:
+      type: string

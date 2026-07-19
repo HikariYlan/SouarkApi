@@ -1,0 +1,32 @@
+post:
+  tags:
+    - team
+  description: Insert a new team into the collection
+  requestBody:
+    description: The team to insert
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./schemas/team.yml#/NewTeam"
+        example:
+          player1: string
+          player2: string
+  responses:
+    201:
+      description: The newly added team
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/team.yml#/Team"
+    400:
+      description: Invalid data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+          example:
+            error: Invalid data

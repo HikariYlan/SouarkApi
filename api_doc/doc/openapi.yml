@@ -13,6 +13,8 @@ tags:
     description: API version
   - name: player
     description: Player collection
+  - name: team
+    description: Team collection
 
 paths:
   /api/version:
@@ -21,3 +23,9 @@ paths:
     $ref: "./player/player.yml"
   /api/player/{id}:
     $ref: "./player/playerId.yml"
+  /api/team:
+    $ref: "./team/team.yml"
+  /api/team/new:
+    $ref: "./team/teamNew.yml"
+  /api/team/{id}:
+    $ref: "./team/teamId.yml"

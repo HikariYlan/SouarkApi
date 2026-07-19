@@ -1,0 +1,4 @@
+List:
+  type: array
+  items:
+    $ref: "./team.yml#/Team"

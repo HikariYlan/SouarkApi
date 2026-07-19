@@ -1,0 +1,47 @@
+get:
+  tags:
+    - team
+  description: Returns one team from the collection
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  responses:
+    200:
+      description: The team from the collection
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/team.yml#/Team"
+    404:
+      description: No team found
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/team.yml#/TeamNotFound"
+          example:
+            error: Data not found
+delete:
+  tags:
+    - team
+  description: Delete a team from the collection
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+  responses:
+    204:
+      description: The team has been deleted
+    404:
+      description: No team found
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/team.yml#/TeamNotFound"
+          example:
+            error: Data not found
+  
