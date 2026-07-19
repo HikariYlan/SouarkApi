@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"souark/api/game"
 	"souark/api/player"
 	"souark/api/services/send"
 	"souark/api/team"
@@ -34,6 +35,9 @@ func main() {
 
 	// Team router
 	router.Handle("/api/team/", http.StripPrefix("/api/team", team.Router()))
+
+	// Game router
+	router.Handle("/api/game/", http.StripPrefix("/api/game", game.Router()))
 
 	// OpenAPI documentation
 	fs := http.FileServer(http.Dir("./api_doc"))
